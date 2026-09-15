@@ -137,33 +137,7 @@ body {
         </ul>
     </div>
 
-<!-- 留言框開始 -->
-<div class="card">
-    <h2>✍️ 給我留個言吧</h2>
-    <!-- 重點1：必須加上 data-netlify="true"，Netlify 才會自動收集留言 -->
-    <!-- 重點2：name="contact" 是這個表單的識別名稱，你可以自己改 -->
-    <form name="contact" method="POST" data-netlify="true">
-        
-        <!-- 隱藏欄位（必須保留，用來告訴系統表單名稱） -->
-        <input type="hidden" name="form-name" value="contact" />
-        
-        <p>
-            <label>你的名字：</label><br>
-            <!-- 重點3：每個輸入框都必須有 name 屬性 -->
-            <input type="text" name="name" required style="width: 100%; padding: 8px; margin-top: 5px;">
-        </p>
-        
-        <p>
-            <label>你的留言：</label><br>
-            <textarea name="message" rows="4" required style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
-        </p>
-        
-        <p>
-            <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">送出留言</button>
-        </p>
-    </form>
-</div>
-<!-- 留言框結束 -->
+
 
 
 <!-- 聯絡信箱開始 -->
