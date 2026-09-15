@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人展示空間</title>
+
+    <style>
+        /* 這裡是簡單的排版設定，讓網頁看起來不那麼陽春 */
+        body { font-family: "微軟正黑體", Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+
+        h1 { color: #333; text-align: center; }
+        .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+h1 {
+    /* 原本的字體大小、顏色等樣式... */
+    background-color: rgba(0, 0, 2, 0.3); /* 60% 透明的黑色背景 */
+    color: white; /* 確保字體是白色 */
+    display: inline-block; /* 讓底色只包圍文字 */
+    padding: 10px 20px; /* 讓文字和底色邊緣有一點緩衝空間 */
+    border-radius: 5px; /* 讓底色的四個角圓潤一點 */
+    
+    /* 👇 加上這一行，讓文字在框框內置中 */
+    text-align: center; 
+    
+    /* 👇 加上這兩行，讓整個帶有背景的標題區塊在螢幕上水平置中 */
+    margin: 0 auto; 
+    display: block; 
+}
+
+
+
+.card {
+    /* 原本的其他樣式... */
+    background-color: rgba(255, 255, 255, 0.8); /* 80% 透明的白色背景 */
+    border-radius: 10px; /* 讓邊緣圓潤一點 */
+}
+
+
+        img { max-width: 100%; height: auto; border-radius: 5px; }
+        a { color: #007BFF; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+
+/* 點擊放大相簿效果 */
+/* 點擊放大相簿效果 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+.modal img {
+    display: block;
+    max-width: 90%; max-height: 90%;
+    margin: auto; position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+/* 左右箭頭按鈕樣式 */
+.prev-btn, .next-btn {
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+    color: white; font-size: 40px; font-weight: bold;
+    cursor: pointer; padding: 10px 20px;
+    user-select: none; z-index: 10000;
+}
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+.prev-btn:hover, .next-btn:hover { opacity: 0.8; }
+
+/* 圖片計數器樣式 */
+.counter {
+    position: absolute; bottom: 20px; left: 50%;
+    transform: translateX(-50%);
+    color: white; font-size: 18px; font-weight: bold;
+    background: rgba(0,0,0,0.5); padding: 5px 15px;
+    border-radius: 20px; z-index: 10000;
+}
+
+/* 設定整個網頁的背景圖片 */
+body {
+    /* 使用 linear-gradient 疊加一層 50% 透明的白色遮罩 */
+    background: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), url("bg.jpg"); /* 這裡填入你的圖片檔名 */
+    background-repeat: no-repeat;    /* 讓圖片不要重複平鋪 */
+    background-size: cover;          /* 讓圖片自動放大縮小，完美覆蓋整個螢幕 */
+    background-position: center;     /* 讓圖片永遠置中顯示 */
+    background-attachment: fixed;    /* 讓背景固定，滑動網頁時圖片不會跟著跑（進階效果） */
+}
+
+
+    </style>
+</head>
+<body>
+
+    <h1>歡迎來到我的展示空間</h1>
+
+<!-- 文章列表按鈕 -->
+<div style="text-align: center; margin: 30px 0;">
+    <a href="blog.html" style="display: inline-block; padding: 15px 30px; background-color: #6f42c1; color: white; text-decoration: none; border-radius: 5px; font-size: 18px;">
+        📝 瀏覽所有文章
+    </a>
+</div>
+
+
+
+
+    <!-- 這裡是圖片展示區 -->
+    <div class="card">
+        <h2>📸 精選圖片</h2>
+       <!-- <p>這是一張示範圖片，你可以把程式碼裡的圖片名稱換成你自己的：</p>
+
+        <!-- 請將 my-photo.jpg 換成你資料夾裡真實的圖片檔名 -->
+        <img src="my-photo.jpg" alt="我的照片" class="zoomable">
+
+<!-- 第1張圖片 -->
+<img src="01.jpg" alt="第1張照片說明" class="zoomable">
+
+<!-- 第2張圖片 -->
+<img src="02.jpg" alt="第2張照片說明" class="zoomable">
+
+<!-- 第3張圖片 -->
+<img src="03.jpg" alt="第3張照片說明" class="zoomable">
+
+    </div>
+
+    <!-- 這裡是文件下載區 -->
+    <div class="card">
+        <h2>📄 文件分享</h2>
+        <p>點擊下方連結可以查看或下載文件：</p>
+        <ul>
+            <!-- 請將 my-pdf.pdf 換成你資料夾裡真實的檔案名稱 -->
+            <li><a href="my-photo2.jpg" target="_blank">📥 查看我的文件</a></li>
+           <!--  <li><a href="my-word.docx" target="_blank">📥 查看 Word 報告</a></li>
+        </ul>
+    </div>
+
+<!-- 留言框開始 -->
+<div class="card">
+    <h2>✍️ 給我留個言吧</h2>
+    <!-- 重點1：必須加上 data-netlify="true"，Netlify 才會自動收集留言 -->
+    <!-- 重點2：name="contact" 是這個表單的識別名稱，你可以自己改 -->
+    <form name="contact" method="POST" data-netlify="true">
+        
+        <!-- 隱藏欄位（必須保留，用來告訴系統表單名稱） -->
+        <input type="hidden" name="form-name" value="contact" />
+        
+        <p>
+            <label>你的名字：</label><br>
+            <!-- 重點3：每個輸入框都必須有 name 屬性 -->
+            <input type="text" name="name" required style="width: 100%; padding: 8px; margin-top: 5px;">
+        </p>
+        
+        <p>
+            <label>你的留言：</label><br>
+            <textarea name="message" rows="4" required style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </p>
+        
+        <p>
+            <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">送出留言</button>
+        </p>
+    </form>
+</div>
+<!-- 留言框結束 -->
+
+
+<!-- 聯絡信箱開始 -->
+<div class="card">
+    <h2>📧 聯絡信箱</h2>
+    <p>如果你希望直接寄信給我，可以點擊下方的按鈕：</p>
+    
+    <!-- 重點：請將 your-email@example.com 換成你真實的電子郵件地址 -->
+    <a href="mailto:ericjl.chen@outlook.com" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+        ✉️ 寄信給我
+    </a>
+</div>
+<!-- 聯絡信箱結束 -->
+
+
+
+
+<!-- 圖片放大彈出視窗 -->
+<div id="imageModal" class="modal">
+    <span class="prev-btn" id="prevBtn">&#10094;</span>
+    <img id="modalImg">
+    <span class="next-btn" id="nextBtn">&#10095;</span>
+    <div class="counter" id="counter"></div>
+</div>
+
+<script>
+    const images = document.querySelectorAll(".zoomable");
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const counter = document.getElementById("counter");
+    
+    let currentIndex = 0;
+    let touchStartX = 0; // 記錄手指按下的位置
+
+    // 更新彈出視窗裡的圖片和計數器
+    function updateModalImage() {
+        modalImg.src = images[currentIndex].src;
+        modalImg.alt = images[currentIndex].alt;
+        counter.textContent = (currentIndex + 1) + " / " + images.length;
+    }
+
+    // 1. 點擊圖片時，打開彈出視窗
+    images.forEach((img, index) => {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", function() {
+            currentIndex = index;
+            updateModalImage();
+            modal.style.display = "block";
+        });
+    });
+
+    // 2. 點擊上一張
+    prevBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateModalImage();
+    });
+
+    // 3. 點擊下一張
+    nextBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % images.length;
+        updateModalImage();
+    });
+
+    // 4. 點擊背景關閉
+    modal.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    // 5. 鍵盤支援：左右鍵切換、ESC 關閉
+    document.addEventListener("keydown", function(e) {
+        if (modal.style.display === "block") {
+            if (e.key === "ArrowLeft") prevBtn.click();
+            else if (e.key === "ArrowRight") nextBtn.click();
+            else if (e.key === "Escape") modal.style.display = "none";
+        }
+    });
+
+    // 6. 手機觸控滑動支援
+    modal.addEventListener("touchstart", function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    modal.addEventListener("touchend", function(e) {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > 50) { // 滑動距離超過 50px 才觸發
+            if (diff > 0) nextBtn.click(); // 往左滑 = 下一張
+            else prevBtn.click();          // 往右滑 = 上一張
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+        e.preventDefault(); // 阻止表單傳統刷新
+        
+        const fileInput = document.getElementById('photoInput');
+        const statusText = document.getElementById('uploadStatus');
+        const file = fileInput.files[0];
+
+        if (!file) return;
+
+        statusText.textContent = "上傳中，請稍候...";
+        statusText.style.color = "blue";
+
+        try {
+            // 1. 將圖片轉成 Base64 字串
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            
+            reader.onload = async function() {
+                // 提取 Base64 資料 (去掉前面的 data:image/jpeg;base64,)
+                const base64Data = reader.result.split(',')[1]; 
+
+                // 2. 發送 POST 請求給 Netlify Function
+                const response = await fetch('/.netlify/functions/upload-photo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        filename: file.name,
+                        fileData: base64Data
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    statusText.textContent = "🎉 " + result.message;
+                    statusText.style.color = "green";
+                    fileInput.value = ""; // 清空選擇框
+                } else {
+                    throw new Error(result.message);
+                }
+            };
+        } catch (error) {
+            statusText.textContent = "❌ 錯誤：" + error.message;
+            statusText.style.color = "red";
+        }
+    });
+</script>
+
+
+</body>
+</html>
